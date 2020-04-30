@@ -2,6 +2,7 @@ import sys
 import os
 
 from lib.tools import *
+from lib.functions import *
 
 if __name__ == '__main__':
 	tool = tools(sys.argv)
