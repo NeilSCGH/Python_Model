@@ -14,12 +14,12 @@ class person():
     if self.tool.argHasValue("-f"):
       self.firstName=self.tool.argValue("-f")
     else:
-      self.firstName = ""
+      self.firstName = "John"
 
     if self.tool.argHasValue("-l"):
       self.lastName=self.tool.argValue("-l")
     else:
-      self.lastName = ""
+      self.lastName = "Doe"
 
     if self.tool.argHasValue("-a"):
       try:
@@ -31,10 +31,18 @@ class person():
     else:
       self.age = 0
 
-
   def print(self):
     print("{} {} is {} years old".format(self.firstName,self.lastName,self.age))
+
+  def checkIfAdult(self):
+    if self.age >= 18:
+      print("{} {} is adult".format(self.firstName,self.lastName))
+    else:
+      print("{} {} is NOT adult".format(self.firstName,self.lastName))
 
   def run(self):
     print("Running !")
     self.print()
+
+    if self.tool.argExist("-adult"):
+      self.checkIfAdult()
