@@ -8,13 +8,15 @@ class person():
 
   def setup(self,args):
     if self.tool.argExist("-h"):
-      print("help msg")
+      self.help()
       exit(0)
 
     if self.tool.argHasValue("-f"):
       self.firstName=self.tool.argValue("-f")
     else:
-      self.firstName = "John"
+      print("Firstname is missing !")
+      self.help()
+      exit(1)
 
     if self.tool.argHasValue("-l"):
       self.lastName=self.tool.argValue("-l")
@@ -29,7 +31,15 @@ class person():
         print("Invalid age !")
         exit(1)
     else:
-      self.age = 0
+      if self.tool.argExist("-adult"):
+        print("Check if adult requested but no age provided !")
+        exit(1)
+      else:
+        self.age = 0
+
+
+  def help(self):
+    print("help msg")
 
   def print(self):
     print("{} {} is {} years old".format(self.firstName,self.lastName,self.age))
