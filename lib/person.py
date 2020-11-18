@@ -1,7 +1,7 @@
 from lib.tools import *
+tools.checkRequirements(["pymediainfo"])
 
 class person():
-
   def __init__(self,args):
     self.tool = tools(args)
     self.setup(args)
