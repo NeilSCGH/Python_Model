@@ -1,37 +1,37 @@
-from lib.tools import *
-tools.checkRequirements(["pymediainfo"])
+from lib.utils import *
+utils.checkRequirements(["pymediainfo"])
 
 class person():
   def __init__(self,args):
-    self.tool = tools(args)
+    self.utils = utils(args)
     self.setup(args)
 
   def setup(self,args):
-    if self.tool.argExist("-h"):
+    if self.utils.argExist("-h"):
       self.help()
       exit(0)
 
-    if self.tool.argHasValue("-f"):
-      self.firstName=self.tool.argValue("-f")
+    if self.utils.argHasValue("-f"):
+      self.firstName=self.utils.argValue("-f")
     else:
       print("Firstname is missing !")
       self.help()
       exit(1)
 
-    if self.tool.argHasValue("-l"):
-      self.lastName=self.tool.argValue("-l")
+    if self.utils.argHasValue("-l"):
+      self.lastName=self.utils.argValue("-l")
     else:
       self.lastName = "Doe"
 
-    if self.tool.argHasValue("-a"):
+    if self.utils.argHasValue("-a"):
       try:
-        self.age=int(self.tool.argValue("-a"))
+        self.age=int(self.utils.argValue("-a"))
         assert self.age >= 0
       except:
         print("Invalid age !")
         exit(1)
     else:
-      if self.tool.argExist("-adult"):
+      if self.utils.argExist("-adult"):
         print("Check if adult requested but no age provided !")
         exit(1)
       else:
@@ -54,5 +54,5 @@ class person():
     print("Running !")
     self.print()
 
-    if self.tool.argExist("-adult"):
+    if self.utils.argExist("-adult"):
       self.checkIfAdult()
